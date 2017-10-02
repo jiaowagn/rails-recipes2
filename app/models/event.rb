@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  belongs_to :category, :optioanl => true 
+  belongs_to :category, :optional => true 
 
   STATUS = ["draft", "public", "private"]
 
