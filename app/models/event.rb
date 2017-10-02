@@ -1,10 +1,12 @@
 class Event < ApplicationRecord
+  belongs_to :category, :optioanl => true 
+
   STATUS = ["draft", "public", "private"]
 
   validates_presence_of :name, :friendly_id
   validates_uniqueness_of :friendly_id
   validates_format_of :friendly_id, :with => /\A[a-z0-9\-]+\z/
-  validates_inclusion_of :status, :in => STATUS 
+  validates_inclusion_of :status, :in => STATUS
 
   before_validation :generate_friendly_id, :on => :create
 
