@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
   include RankedModel
   ranks :row_order
-  
+
   belongs_to :category, :optional => true
   has_many :tickets, :dependent => :destroy, :inverse_of => :event
   accepts_nested_attributes_for :tickets, :allow_destroy => true, :reject_if => :all_blank
@@ -14,6 +14,8 @@ class Event < ApplicationRecord
   validates_inclusion_of :status, :in => STATUS
 
   before_validation :generate_friendly_id, :on => :create
+
+  has_many :registrations, :dependent => :destroy 
 
 
   def to_param
