@@ -12,12 +12,19 @@ class Registration < ApplicationRecord
   belongs_to :ticket
 
   before_validation :generate_uuid, :on => :create
+  validate :check_event_status, :on => :create
 
   def to_param
     self.uuid
   end
 
   protected
+
+  def check_event_status
+    if self.event.status == "draft"
+      errors.add(:base, "活动尚未开始报名")
+    end
+  end 
 
   def generate_uuid
     self.uuid = SecureRandom.uuid
