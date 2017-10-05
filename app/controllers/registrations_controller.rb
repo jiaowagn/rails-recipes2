@@ -8,9 +8,9 @@ class RegistrationsController < ApplicationController
     @registration = @event.registrations.new(registration_params)
     @registration.ticket = @event.tickets.find(params[:registration][:ticket_id])
     @registration.user = current_user
-    @registration.status = "confirmed"
+    @registration.status = "pending"
     if @registration.save
-      redirect_to event_registration_path(@event, @registration)
+      redirect_to step2_event_registration_path(@event, @registration)
     else
       render "new"
     end
