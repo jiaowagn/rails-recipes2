@@ -1,7 +1,7 @@
 namespace :dev do
 
   task :fake_event_and_registrations => :environment do
-    event = Event.create!(:status => "public", :name => "全栈营 Meetup", :friendly_id => "fullstack-meetup1")
+    event = Event.create!(:status => "public", :name => "全栈营 Meetup", :friendly_id => "fullstack-meetup2")
     t1 = event.tickets.create!(:name => "Guest", :price => 0)
     t2 = event.tickets.create!(:name => "VIP 第一期", :price => 199)
     t3 = event.tickets.create!(:name => "VIP 第二期", :price => 199)
