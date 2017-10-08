@@ -14,6 +14,9 @@ class Registration < ApplicationRecord
   before_validation :generate_uuid, :on => :create
   validate :check_event_status, :on => :create
 
+  scope :by_status, ->(s){where(:status => s)}
+  scope :by_ticket, ->(t){where(:ticket_id => t)}
+
   def to_param
     self.uuid
   end
@@ -24,7 +27,7 @@ class Registration < ApplicationRecord
     if self.event.status == "draft"
       errors.add(:base, "活动尚未开始报名")
     end
-  end 
+  end
 
   def generate_uuid
     self.uuid = SecureRandom.uuid
