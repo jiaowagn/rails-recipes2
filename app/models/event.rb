@@ -8,6 +8,9 @@ class Event < ApplicationRecord
 
   STATUS = ["draft", "public", "private"]
 
+  scope :only_public, -> {where(:status => "public")}
+  scope :only_available, -> {where(:status => ["public", "private"])}
+
   validates_presence_of :name, :friendly_id
   validates_uniqueness_of :friendly_id
   validates_format_of :friendly_id, :with => /\A[a-z0-9\-]+\z/
@@ -15,7 +18,7 @@ class Event < ApplicationRecord
 
   before_validation :generate_friendly_id, :on => :create
 
-  has_many :registrations, :dependent => :destroy 
+  has_many :registrations, :dependent => :destroy
 
 
   def to_param
