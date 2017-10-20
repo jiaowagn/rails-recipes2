@@ -1,5 +1,6 @@
 class Admin::EventTicketsController < AdminController
   before_action :find_event
+  before_action :require_editor!
 
   def index
     @tickets = @event.tickets
@@ -44,6 +45,6 @@ class Admin::EventTicketsController < AdminController
 
   def find_event
     @event = Event.find_by_friendly_id!(params[:event_id])
-  end 
+  end
 
 end
