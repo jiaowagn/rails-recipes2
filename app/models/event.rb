@@ -26,6 +26,7 @@ class Event < ApplicationRecord
   before_validation :generate_friendly_id, :on => :create
 
   has_many :registrations, :dependent => :destroy
+  has_many :registration_imports, :dependent => :destroy 
 
 
   def to_param
