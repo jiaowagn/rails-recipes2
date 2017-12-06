@@ -77,6 +77,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'mysql2' #mysql2 和 pg 择一安装即可
 # gem 'pg'
 
+gem 'whenever', :require => false 
+
 group :development, :test do
   gem 'capistrano-rails'
   gem 'capistrano-passenger'
